@@ -12,6 +12,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : System.Windows.Forms.Form
     {
+        [STAThreadAttribute]
         static void Main()
         {
             Application.Run(new Form1());
@@ -35,12 +36,12 @@ namespace WindowsFormsApp1
                 string sentence = richTextBox1.Text;
 
                 // делим текст на слова
-                string[] words = sentence.Split();
+                string[] words = sentence.Split(' ', ',', '.', ';', '\n');
 
                 // класс для проверки слов
                 SpellChecker checker = new SpellChecker();
 
-                textBox2.Text = "";
+                richTextBox2.Text = "";
                 this.richTextBox1.Rtf = @"{\rtf1\ansi\deff0{\colortbl;\red0\green0\blue0;\red0\green0\blue0;}" +
                     @"" + richTextBox1.Text + @"}";
 
@@ -53,7 +54,7 @@ namespace WindowsFormsApp1
                     // правильно написано
                     if (suggestions == null)
                     {
-                        textBox2.Text += "\"" + word + "\" написано верно\r\n";
+                        richTextBox2.Text += "\"" + word + "\" написано верно\r\n";
                     }
                     else
                     {
@@ -79,9 +80,9 @@ namespace WindowsFormsApp1
                         }
 
                         // ошибка - предлагаем варианты
-                        textBox2.Text += "\"" + word + "\" написано не верно! Варианты:\r\n";
+                        richTextBox2.Text += "\"" + word + "\" написано не верно! Варианты:\r\n";
                         foreach (string suggestion in suggestions)
-                            textBox2.Text += "\t" + suggestion + "\r\n";
+                            richTextBox2.Text += "\t" + suggestion + "\r\n";
                     }
                 }
                 checker = null;
@@ -90,15 +91,82 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                // MessageBox.Show("");
-            }
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        void PasteAction(object sender, EventArgs e, string suggestion)
+        {
+            if (Clipboard.ContainsText(TextDataFormat.Rtf))
+            {
+                richTextBox1.SelectedText
+                    = suggestion;
+            }
+        }
+
+        private void richTextBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                ContextMenu contextMenu = new System.Windows.Forms.ContextMenu();
+                if (e.Button == MouseButtons.Right)
+                {
+                    Point point = new Point(e.X, e.Y);
+                    int index = richTextBox1.GetCharIndexFromPosition(point);
+
+                    int length = 1;
+
+                    if (!Char.IsWhiteSpace(richTextBox1.Text[index]))
+                    {
+                        while (index > 0 && !Char.IsWhiteSpace(richTextBox1.Text[index - 1]))
+                        { index--; length++; }
+
+                        while (index + length < richTextBox1.Text.Length &&
+                            !Char.IsWhiteSpace(richTextBox1.Text[index + length]) &&
+                            (!Char.IsPunctuation(richTextBox1.Text[index + length]) ||
+                            richTextBox1.Text[index + length] == Char.Parse("'"))
+                        ) length++;
+
+                        richTextBox1.SelectionStart = index;
+                        richTextBox1.SelectionLength = length;
+
+                        // текст для проверки
+                        string sentence = richTextBox1.Text;
+
+                        // делим текст на слова
+                        string[] words = sentence.Split(' ', ',', '.', ';', '\n');
+
+                        // класс для проверки слов
+                        SpellChecker checker = new SpellChecker();
+
+                        // проверяем каждое слово
+                        foreach (string word in words)
+                        {
+                            // проверка
+                            string[] suggestions = checker.Suggest(word);
+
+                            // не правильно написано
+                            if (suggestions != null)
+                            {
+                                if (word == richTextBox1.SelectedText)
+                                {
+                                    foreach (string suggestion in suggestions)
+                                        contextMenu.MenuItems.Add(suggestion, (sender2, e2) => PasteAction(sender2, e2, suggestion));
+                                }
+                            }
+                        }
+                        checker = null;
+                        richTextBox1.ContextMenu = contextMenu;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
