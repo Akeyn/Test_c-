@@ -36,12 +36,11 @@ namespace WindowsFormsApp1
                 string sentence = richTextBox1.Text;
 
                 // делим текст на слова
-                string[] words = sentence.Split(' ', ',', '.', ';', '\n');
+                string[] words = sentence.Split(' ', ',', '.', ';', '\n', '?', '!', '/', ':');
 
                 // класс для проверки слов
                 SpellChecker checker = new SpellChecker();
 
-                richTextBox2.Text = "";
                 this.richTextBox1.Rtf = @"{\rtf1\ansi\deff0{\colortbl;\red0\green0\blue0;\red0\green0\blue0;}" +
                     @"" + richTextBox1.Text + @"}";
 
@@ -52,11 +51,7 @@ namespace WindowsFormsApp1
                     string[] suggestions = checker.Suggest(word);
 
                     // правильно написано
-                    if (suggestions == null)
-                    {
-                        richTextBox2.Text += "\"" + word + "\" написано верно\r\n";
-                    }
-                    else
+                    if (suggestions != null)
                     {
                         int startIndex = 0;
                         while (startIndex < richTextBox1.TextLength)
@@ -78,11 +73,6 @@ namespace WindowsFormsApp1
                                 break;
                             startIndex += wordStartIndex + word.Length;
                         }
-
-                        // ошибка - предлагаем варианты
-                        richTextBox2.Text += "\"" + word + "\" написано не верно! Варианты:\r\n";
-                        foreach (string suggestion in suggestions)
-                            richTextBox2.Text += "\t" + suggestion + "\r\n";
                     }
                 }
                 checker = null;
@@ -100,10 +90,11 @@ namespace WindowsFormsApp1
 
         void PasteAction(object sender, EventArgs e, string suggestion)
         {
+            Clipboard.SetData(DataFormats.Rtf, "");
             if (Clipboard.ContainsText(TextDataFormat.Rtf))
             {
-                richTextBox1.SelectedText
-                    = suggestion;
+                richTextBox1.SelectedRtf = @"{\rtf1\ansi\deff0{\colortbl;\red0\green0\blue0;\red0\green0\blue0;}" +
+                    @"\ul0\cf2" + suggestion + @"}";
             }
         }
 
@@ -137,7 +128,7 @@ namespace WindowsFormsApp1
                         string sentence = richTextBox1.Text;
 
                         // делим текст на слова
-                        string[] words = sentence.Split(' ', ',', '.', ';', '\n');
+                        string[] words = sentence.Split(' ', ',', '.', ';', '\n', '?', '!', '/', ':');
 
                         // класс для проверки слов
                         SpellChecker checker = new SpellChecker();
