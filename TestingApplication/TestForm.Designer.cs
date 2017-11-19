@@ -47,10 +47,9 @@ namespace TestingApplication
           // bCkeckAll
           // 
           this.bCkeckAll.Dock = System.Windows.Forms.DockStyle.Fill;
-          this.bCkeckAll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
           this.bCkeckAll.Location = new System.Drawing.Point(0, 0);
           this.bCkeckAll.Name = "bCkeckAll";
-          this.bCkeckAll.Size = new System.Drawing.Size(232, 28);
+          this.bCkeckAll.Size = new System.Drawing.Size(263, 28);
           this.bCkeckAll.TabIndex = 9;
           this.bCkeckAll.Text = "Check All";
           this.bCkeckAll.UseVisualStyleBackColor = true;
@@ -58,12 +57,10 @@ namespace TestingApplication
           // 
           // chAutoSpelling
           // 
-          this.chAutoSpelling.Anchor = System.Windows.Forms.AnchorStyles.Right;
           this.chAutoSpelling.AutoSize = true;
           this.chAutoSpelling.Checked = true;
           this.chAutoSpelling.CheckState = System.Windows.Forms.CheckState.Checked;
-          this.chAutoSpelling.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-          this.chAutoSpelling.Location = new System.Drawing.Point(29, 7);
+          this.chAutoSpelling.Location = new System.Drawing.Point(16, 6);
           this.chAutoSpelling.Name = "chAutoSpelling";
           this.chAutoSpelling.Size = new System.Drawing.Size(85, 17);
           this.chAutoSpelling.TabIndex = 10;
@@ -76,34 +73,35 @@ namespace TestingApplication
           this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
           this.splitContainer1.Location = new System.Drawing.Point(0, 0);
           this.splitContainer1.Name = "splitContainer1";
-          this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
           // 
           // splitContainer1.Panel1
           // 
-          this.splitContainer1.Panel1.Controls.Add(this.customPaintRichText21);
+          this.splitContainer1.Panel1.Controls.Add(this.bCkeckAll);
           // 
           // splitContainer1.Panel2
           // 
-          this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-          this.splitContainer1.Size = new System.Drawing.Size(384, 212);
-          this.splitContainer1.SplitterDistance = 180;
+          this.splitContainer1.Panel2.Controls.Add(this.chAutoSpelling);
+          this.splitContainer1.Size = new System.Drawing.Size(384, 28);
+          this.splitContainer1.SplitterDistance = 263;
           this.splitContainer1.TabIndex = 15;
+          this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
           // 
           // splitContainer2
           // 
           this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
           this.splitContainer2.Location = new System.Drawing.Point(0, 0);
           this.splitContainer2.Name = "splitContainer2";
+          this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
           // 
           // splitContainer2.Panel1
           // 
-          this.splitContainer2.Panel1.Controls.Add(this.bCkeckAll);
+          this.splitContainer2.Panel1.Controls.Add(this.customPaintRichText21);
           // 
           // splitContainer2.Panel2
           // 
-          this.splitContainer2.Panel2.Controls.Add(this.chAutoSpelling);
-          this.splitContainer2.Size = new System.Drawing.Size(384, 28);
-          this.splitContainer2.SplitterDistance = 232;
+          this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
+          this.splitContainer2.Size = new System.Drawing.Size(384, 212);
+          this.splitContainer2.SplitterDistance = 180;
           this.splitContainer2.TabIndex = 16;
           // 
           // spellingWorker2
@@ -115,7 +113,7 @@ namespace TestingApplication
           // customPaintRichText21
           // 
           this.customPaintRichText21.Dock = System.Windows.Forms.DockStyle.Fill;
-          this.customPaintRichText21.Font = new System.Drawing.Font("Arial", 12F);
+          this.customPaintRichText21.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
           this.customPaintRichText21.IsPassWordProtected = false;
           this.customPaintRichText21.IsSpellingAutoEnabled = true;
           this.customPaintRichText21.IsSpellingEnabled = true;
@@ -135,19 +133,18 @@ namespace TestingApplication
           this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
           this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
           this.ClientSize = new System.Drawing.Size(384, 212);
-          this.Controls.Add(this.splitContainer1);
-          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+          this.Controls.Add(this.splitContainer2);
           this.MaximizeBox = false;
           this.MinimizeBox = false;
           this.Name = "TestForm";
-          this.Text = "English Spell Check";
+          this.Text = "Test Application";
           this.Load += new System.EventHandler(this.TestForm_Load);
           this.splitContainer1.Panel1.ResumeLayout(false);
           this.splitContainer1.Panel2.ResumeLayout(false);
+          this.splitContainer1.Panel2.PerformLayout();
           this.splitContainer1.ResumeLayout(false);
           this.splitContainer2.Panel1.ResumeLayout(false);
           this.splitContainer2.Panel2.ResumeLayout(false);
-          this.splitContainer2.Panel2.PerformLayout();
           this.splitContainer2.ResumeLayout(false);
           this.ResumeLayout(false);
 

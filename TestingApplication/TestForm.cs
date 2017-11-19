@@ -21,7 +21,7 @@ namespace TestingApplication
          customPaintRichText21.IsSpellingAutoEnabled = chAutoSpelling.Checked;
       }
 
-      private void customMaskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+      private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
       {
 
       }
