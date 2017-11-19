@@ -1,0 +1,15 @@
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\bin\Debug\Hunspellx64.dll
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\bin\Debug\Hunspellx86.dll
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\bin\Debug\en_US.aff
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\bin\Debug\en_US.dic
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\bin\Debug\TestingApplication.exe
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\bin\Debug\TestingApplication.pdb
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\bin\Debug\NHunspellComponent.dll
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\bin\Debug\NHunspell.dll
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\bin\Debug\NHunspellComponent.pdb
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\obj\Debug\TestingApplication.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\obj\Debug\TestingApplication.Properties.Resources.resources
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\obj\Debug\TestingApplication.TestForm.resources
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\obj\Debug\TestingApplication.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\obj\Debug\TestingApplication.exe
+C:\Users\User\Desktop\NHunspellComponent_v1.01\NHunspellComponent\TestingApplication\obj\Debug\TestingApplication.pdb
