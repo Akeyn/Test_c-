@@ -7,18 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Controls;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form1 : System.Windows.Forms.Form
+    public partial class formEnglishSpellCheck : System.Windows.Forms.Form
     {
         [STAThreadAttribute]
         static void Main()
         {
-            Application.Run(new Form1());
+            Application.Run(new formEnglishSpellCheck());
         }
 
-        public Form1()
+        public formEnglishSpellCheck()
         {
             InitializeComponent();
         }
@@ -158,6 +159,11 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
